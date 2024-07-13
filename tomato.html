@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomato Thrive</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div class="navbar">
+        <a href="#"><span class="app-name">Tomato Thrive</span></a>
+        <a href="#" onclick="showSection('control')">Control</a>
+        <a href="#" onclick="showSection('monitor')">Monitor</a>
+        <a href="#" onclick="showSection('notifications')">Notifications</a>
+        <a href="#" onclick="showSection('tomato-info')">Tomato Info</a>
+        <a href="#" onclick="showSection('guide')">Harvest Guide</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+
+        <!-- Control Section -->
+        <div id="control" class="container section">
+            <div class="control-container">
+                <h1>Control Settings</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <form id="profileForm">
+                                <label for="temperature">Temperature:</label>
+                                <input type="text" id="temperature" name="temperature" required><br><br>
+                            
+                                <label for="humidity">Humidity:</label>
+                                <input type="text" id="humidity" name="humidity" required><br><br>
+                            
+                                <label for="interval">Sprinkler Interval (minutes):</label>
+                                <input type="text" id="interval" name="interval" required><br><br>
+                            
+                                <label for="lightControl">Light Control:</label>
+                                <select id="lightControl" name="lightControl" required>
+                                    <option value="Auto">Auto</option>
+                                    <option value="Manual">Manual</option>
+                                    <option value="Off">Off</option>
+                                </select><br><br>
+                            
+                                <label for="filterStatus">HEPA Filter Status:</label>
+                                <select id="filterStatus" name="filterStatus" required>
+                                    <option value="Clean">Clean</option>
+                                    <option value="Dirty">Dirty</option>
+                                    <option value="Needs Replacement">Needs Replacement</option>
+                                </select><br><br>
+                            
+                                <button type="submit" id="saveProfile">Set and Save Profile</button>
+                            </form>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    
+                            
+                            
+    <!-- Monitor section -->
+    <div id="monitor" class="container section">
+        <div class="control-container">
+            <h1>Monitor Section</h1>
+            <!-- Add monitor section content here -->
+            <div class="data-display">
+                <h2>Current Settings</h2>
+                <p><strong>Current Temperature:</strong> <span id="current-temperature">-</span>°C</p>
+                <p><strong>Current Humidity:</strong> <span id="current-humidity">-</span>%</p>
+                <p><strong>Current Sprinkler Interval:</strong> <span id="current-interval">-</span> minutes</p>
+                <p><strong>Current Light Control:</strong> <span id="current-light">Auto</span></p>
+                <p><strong>HEPA Filter Status:</strong> <span id="current-filter-status">Clean</span></p>
+            </div>
+           <!-- Additional features -->
+<div class="additional-features">
+    <h2 style="color: #c17130; border-bottom: 2px solid #c17130; padding-bottom: 5px; text-align: center;">Additional Features</h2>
+    
+   
+    
+    <div id="notification" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">Notifications</h3>
+        <ul id="notification-list">
+            <!-- Notifications will appear here dynamically -->
+            <li>New update available for your device.</li>
+            <li>High humidity alert.</li>
+            <li>Sprinkler interval updated.</li>
+            <li>Device maintenance scheduled for next week.</li>
+            <li>Light control switched to manual mode.</li>
+        </ul>
+    </div>
+    
+    <div id="user-profile" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">User Profile</h3>
+        <p><strong>Username:</strong> <span id="user-username">Yamini</span></p>
+        <p><strong>Email:</strong> <span id="user-email">yamini@gmail.com</span></p>
+    </div>
+    
+    <div id="energy-efficiency" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">Energy Efficiency</h3>
+        <p><strong>Energy Savings Today:</strong> <span id="energy-savings-today">-</span>100 kWh</p>
+        <p><strong>Energy Usage This Month:</strong> <span id="energy-usage-month">-</span>5000 kWh</p>
+    </div>
+    
+    <div id="device-health" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">Device Health</h3>
+        <p><strong>Device Status:</strong> <span id="device-status">Normal</span></p>
+        <p><strong>Last Maintenance:</strong> <span id="last-maintenance">july 8 2024</span></p>
+    </div>
+    
+    <div id="weather-info" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">Weather Information</h3>
+        <p><strong>Current Weather:</strong> <span id="current-weather">-</span>cloudy</p>
+        <p><strong>Temperature Outside:</strong> <span id="temperature-outside">-</span>36°C</p>
+    </div>
+    
+    <div id="smart-responses" style="margin-top: 20px;">
+        <h3 style="color: white; background-color: #c17130; border-bottom: 1px solid #c17130; padding: 10px; text-align: center;">Smart Responses</h3>
+        <p><strong>Optimal Settings Suggested:</strong> <span id="optimal-settings">The tomato is about to ripe</span></p>
+    </div>
+</div>
+
+
+            <div class="status" id="status">Status: Ready</div>
+        </div>
+    </div>
+
+    <!-- Notifications section -->
+<div id="notifications" class="container section">
+    <div class="notifications-container">
+        <h1>Notifications</h1>
+        
+        <!-- Notification 1: Critical Alerts -->
+        <div class="notification">
+            <h3>Critical Alert: Extreme Temperature Detected</h3>
+            <p>Temperature in the tomato garden has exceeded safe levels. Take action immediately to prevent plant damage.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('temperature')">View Details</button>
+            </div>
+        </div>
+
+        <!-- Notification 2: Maintenance Reminders -->
+        <div class="notification">
+            <h3>Maintenance Reminder: Filter Replacement</h3>
+            <p>It's time to replace the HEPA filter to maintain optimal air quality for your tomato plants.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('filter')">View Details</button>
+            </div>
+        </div>
+
+        <!-- Notification 3: Weather Updates -->
+        <div class="notification">
+            <h3>Weather Update: Rain Expected Tomorrow</h3>
+            <p>Prepare your tomato garden for upcoming rain showers to prevent overwatering and fungal diseases.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('weather')">View Forecast</button>
+            </div>
+        </div>
+
+        <!-- Notification 4: Growth Milestones -->
+        <div class="notification">
+            <h3>Growth Milestone: Flowering Stage Achieved</h3>
+            <p>Your tomato plants have entered the flowering stage. Monitor and adjust environmental conditions accordingly.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('growth')">Learn More</button>
+            </div>
+        </div>
+
+        <!-- Notification 5: Pest Warnings -->
+        <div class="notification">
+            <h3>Pest Alert: Aphid Infestation Risk</h3>
+            <p>Current weather conditions pose a high risk of aphid infestation. Take preventive measures to protect your plants.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('pest')">Preventive Tips</button>
+            </div>
+        </div>
+
+        <!-- Notification 6: Task Completion -->
+        <div class="notification">
+            <h3>Task Completed: Watering Cycle Finished</h3>
+            <p>The scheduled watering cycle for your tomato plants has been successfully completed.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('water')">View Report</button>
+            </div>
+        </div>
+
+        <!-- Notification 7: Harvest Readiness -->
+        <div class="notification">
+            <h3>Harvest Ready: Tomatoes Ready for Picking</h3>
+            <p>Your tomatoes are ripe and ready to be harvested. Enjoy the fruits of your labor!</p>
+            <div class="button-container">
+                <button onclick="viewDetails('harvest')">Harvest Tips</button>
+            </div>
+        </div>
+
+        <!-- Notification 8: Seasonal Tips -->
+        <div class="notification">
+            <h3>Seasonal Tip: Summer Tomato Care Tips</h3>
+            <p>Keep your tomato plants cool and hydrated during hot summer days to maintain healthy growth.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('summer')">Learn More</button>
+            </div>
+        </div>
+
+        <!-- Notification 9: Community Updates -->
+        <div class="notification">
+            <h3>Community Update: Success Stories</h3>
+            <p>Read inspiring success stories and tips from fellow Tomato Thrive users in your community.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('community')">Read More</button>
+            </div>
+        </div>
+
+        <!-- Notification 10: Educational Content -->
+        <div class="notification">
+            <h3>Educational Content: Tomato Planting Guide</h3>
+            <p>Discover expert tips and techniques for planting and caring for tomato plants in your garden.</p>
+            <div class="button-container">
+                <button onclick="viewDetails('education')">Explore Guide</button>
+            </div>
+        </div>
+
+        <div id="update-status"></div>
+    </div>
+</div>
+
+
+
+    <!-- Tomato information section -->
+<div id="tomato-info" class="container section">
+        <div class="tomato-info-content">
+            <h1>Tomato Information</h1>
+            <!-- Tomato variety selector -->
+            <div class="tomato-variety-selector">
+                <label for="tomato-select">Select a Tomato Variety:</label>
+                <select id="tomato-select">
+                    <option value="cherry">Cherry Tomato</option>
+                    <option value="beefsteak">Beefsteak Tomato</option>
+                    <option value="roma">Roma Tomato</option>
+                    <option value="heirloom">Heirloom Tomato</option>
+                    <option value="plum">Plum Tomato</option>
+                    <option value="yellow">Yellow Tomato</option>
+                    <option value="grape">Grape Tomato</option>
+                    <option value="green-zebra">Green Zebra Tomato</option>
+                    <option value="black-krim">Black Krim Tomato</option>
+                    <option value="brandywine">Brandywine Tomato</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <!-- Tomato info content -->
+            <div class="variety-info-content" id="cherry-content">
+                <h2>Cherry Tomato</h2>
+                <p>Cherry tomatoes are small, round fruits that typically range in size from a marble to a golf ball. They are known for their sweet flavor and are often eaten raw in salads, pasta dishes, or as a snack. Cherry tomatoes come in various colors, including red, yellow, and even purple.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV6cHRmSX_wibDX5jPblJwv0jsQlKP1bYr2A&s" alt="Cherry Tomato">
+                <p>They are easy to grow and produce fruit quickly, making them a favorite for home gardeners. Cherry tomato plants can be determinate (bushy) or indeterminate (vining), so choose based on your space and growing preferences.</p>
+                <p>To enhance flavor, allow cherry tomatoes to fully ripen on the vine before picking. They should be firm but slightly soft to the touch, with a rich color and sweet aroma.</p>
+                <p>Cherry tomatoes are versatile in the kitchen and can be used fresh, roasted, grilled, or preserved in sauces and jams.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9M_S0vXcxYDNU96SQaStuRjY5-ADBgvknoIYV8OlzMW5zi32B9B0Ov2SQ28P-D8mdTpw&usqp=CAU" alt="Cherry Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="beefsteak-content">
+                <h2>Beefsteak Tomato</h2>
+                <p>Beefsteak tomatoes are large, meaty tomatoes known for their robust flavor and juicy texture. They are typically used for slicing and are popular in sandwiches, burgers, and salads where their size and flavor can stand out.</p>
+                <img src="https://www.shutterstock.com/image-photo/this-beefsteak-tomato-huge-juicy-260nw-1077178628.jpg" alt="Beefsteak Tomato">
+                <p>These tomatoes can weigh up to a pound or more and come in various colors, including red, pink, and yellow. They are often grown in gardens with support for their heavy fruit, such as cages or stakes.</p>
+                <p>Beefsteak tomatoes require ample sunlight and regular watering to thrive. They can be determinate or indeterminate, with indeterminate varieties producing fruit throughout the growing season.</p>
+                <p>For best results, allow beefsteak tomatoes to fully ripen on the vine until they are firm but slightly soft to the touch. Harvest when the color is deep and the aroma is strong.</p>
+                <img src="https://m.media-amazon.com/images/I/41FWRMOZHhL._AC_UF1000,1000_QL80_.jpg" alt="Beefsteak Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="roma-content">
+                <h2>Roma Tomato</h2>
+                <p>Roma tomatoes, also known as plum tomatoes, are oval-shaped tomatoes known for their firm flesh and low moisture content. They are popular for making sauces, pastes, and canning due to their dense texture and rich flavor.</p>
+                <img src="https://media.istockphoto.com/id/177293538/photo/plum-tomatoes-on-a-white-background.jpg?s=612x612&w=0&k=20&c=SiRbWJDRgB40OaJQjSKEtqNXpflenAV9T2NQXYib_3E=" alt="Roma Tomato">
+                <p>These tomatoes have fewer seeds and less juice compared to other varieties, making them ideal for cooking down into thick sauces without becoming watery.</p>
+                <p>Roma tomato plants are determinate and compact, making them suitable for smaller gardens or container gardening. They require consistent watering and well-drained soil to prevent diseases like blossom end rot.</p>
+                <p>Harvest Roma tomatoes when they are fully colored and firm to the touch. They should have a deep red hue and a slight give when gently squeezed.</p>
+                <img src="https://horticulture.co.uk/wp-content/uploads/2021/11/1-13.jpg" alt="Roma Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="heirloom-content">
+                <h2>Heirloom Tomato</h2>
+                <p>Heirloom tomatoes are open-pollinated varieties that have been passed down through generations for their unique flavors, colors, and shapes. They come in a wide range of sizes and colors, including red, yellow, purple, green, and striped.</p>
+                <img src="https://media.istockphoto.com/id/840287956/photo/fresh-heirloom-tomato.jpg?s=612x612&w=0&k=20&c=oBL0PYaPYohgl1b4AW8kUBH_rMCQFQx4AmBrmSxWu_Q=" alt="Heirloom Tomato">
+                <p>These tomatoes are prized for their rich, complex flavors that often have a balance of sweetness and acidity. They are versatile in the kitchen and can be used fresh in salads, sandwiches, or cooked into sauces and soups.</p>
+                <p>Heirloom tomato plants may have indeterminate or determinate growth habits, depending on the variety. They require full sun, well-drained soil, and regular watering to thrive.</p>
+                <p>For best flavor, allow heirloom tomatoes to fully ripen on the vine until they are soft to the touch and have a deep, vibrant color. Each variety offers a unique taste experience.</p>
+                <img src="https://m.media-amazon.com/images/I/51YhetN5W+L._AC_UF894,1000_QL80_.jpg" alt="Heirloom Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="plum-content">
+                <h2>Plum Tomato</h2>
+                <p>Plum tomatoes, also known as paste tomatoes, are elongated and meaty with fewer seeds and less water content than other tomato varieties. They are prized for their firm texture and rich flavor, making them ideal for sauces, pastes, and canning.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoVtdDmr2UTsMz3gr_47CD9anrRlSoIN8KPQ&s" alt="Plum Tomato">
+                <p>These tomatoes are typically red or yellow and are used extensively in Mediterranean cuisine for dishes like pasta sauces, soups, and stews. Their shape and dense flesh make them easy to cook down into thick, flavorful sauces.</p>
+                <p>Plum tomato plants are determinate and compact, making them suitable for container gardening or small spaces. They require consistent watering and warm temperatures to produce abundant fruit.</p>
+                <p>Harvest plum tomatoes when they are fully colored and firm. They should have a deep, rich color and be slightly soft to the touch for the best flavor and texture.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9wIQvkSCDm1G2CHW5M3PmimxFKuyi6y-P_mGmjzlkNk111up32tM4QdgrZd5LGxLuq1w&usqp=CAU" alt="Plum Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="yellow-content">
+                <h2>Yellow Tomato</h2>
+                <p>Yellow tomatoes are a colorful and flavorful alternative to traditional red tomatoes. They come in various shades of yellow, from pale lemon to deep gold, and offer a mild, slightly sweet flavor with low acidity.</p>
+                <img src="https://www.shutterstock.com/image-photo/big-fresh-yellow-tomato-isolated-260nw-402418336.jpg" alt="Yellow Tomato">
+                <p>These tomatoes are versatile in the kitchen and can be used fresh in salads, sandwiches, or cooked into sauces and soups. They add a bright pop of color to dishes and are often preferred for their mild taste.</p>
+                <p>Yellow tomato plants can be determinate or indeterminate, depending on the variety. They require full sun and regular watering to thrive, producing fruit throughout the growing season.</p>
+                <p>For best flavor, harvest yellow tomatoes when they are fully colored and slightly soft to the touch. They should have a smooth, glossy skin and a sweet aroma.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyuwbGEgEOqZRkZBMX48g19ZdJ5KYpGoRd3ltFWmRmdjJOzKO7g2X42P9r7laiyhWIkmc&usqp=CAU" alt="Yellow Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="grape-content">
+                <h2>Grape Tomato</h2>
+                <p>Grape tomatoes are small, oblong fruits similar in size and shape to grapes. They are known for their sweet flavor and firm texture, making them popular for snacking, salads, and roasting.</p>
+                <img src="https://cdn.pixabay.com/photo/2017/11/05/01/56/grape-tomatoes-2919375_1280.jpg" alt="Grape Tomato">
+                <p>These tomatoes come in shades of red and yellow and are often sweeter and less acidic than other tomato varieties. They are easy to grow and produce fruit in clusters throughout the growing season.</p>
+                <p>Grape tomato plants are indeterminate, growing tall and requiring support like stakes or trellises. They thrive in full sun and well-drained soil with consistent moisture.</p>
+                <p>Harvest grape tomatoes when they are fully ripe and firm to the touch. They should have a glossy skin and a sweet aroma for optimal flavor.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6cdCVRezChsVS7Z88-qJPsCMfXbbzqUzCIBMlfl3F2YYy8rKkJf8jIo2ZeSiRKSeKcwQ&usqp=CAU" alt="Grape Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="green-zebra-content">
+                <h2>Green Zebra Tomato</h2>
+                <p>Green Zebra tomatoes are small to medium-sized tomatoes known for their vibrant green stripes and tangy flavor. They have a slightly tart taste with a hint of sweetness, making them unique in salads and culinary dishes.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq862LgUziabRgpz75R6wfMq3fwACkltRvCg&s" alt="Green Zebra Tomato">
+                <p>These tomatoes ripen to a yellowish-green color with darker green stripes. They are often used in fresh salsas, sandwiches, or grilled for a burst of color and flavor.</p>
+                <p>Green Zebra tomato plants are indeterminate and require full sun to develop their characteristic color and flavor. They benefit from regular watering and well-drained soil for optimal growth.</p>
+                <p>Harvest Green Zebra tomatoes when they are fully colored and slightly soft to the touch. Their unique appearance and flavor add interest to culinary creations.</p>
+                <img src="https://www.shutterstock.com/image-photo/whole-halved-fresh-green-zebra-260nw-1971808784.jpg" alt="Green Zebra Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="black-krim-content">
+                <h2>Black Krim Tomato</h2>
+                <p>Black Krim tomatoes are heirloom tomatoes known for their deep, dusky purple-red color and rich, smoky flavor. They originated in Russia and are prized for their unique appearance and complex taste.</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL0MeS6F7e-ONp_iid--Lymh4KYdhO_wSoCA&s.jpg" alt="Black Krim Tomato">
+                <p>These tomatoes have a slightly salty and sweet flavor with a hint of smokiness, making them ideal for slicing fresh in salads or sandwiches. They add depth of flavor to sauces and soups when cooked.</p>
+                <p>Black Krim tomato plants are indeterminate and require full sun and warm temperatures to thrive. They benefit from well-drained soil and regular watering throughout the growing season.</p>
+                <p>Harvest Black Krim tomatoes when they are fully colored and slightly soft to the touch. They should have a deep, purplish-red hue and a rich aroma for peak flavor.</p>
+                <img src="https://i.ebayimg.com/images/g/dbgAAOSwWz5cAen9/s-l400.jpg" alt="Black Krim Tomato Plant">
+            </div>
+            <div class="variety-info-content" id="brandywine-content">
+                <h2>Brandywine Tomato</h2>
+                <p>Brandywine tomatoes are heirloom tomatoes known for their large size, rich flavor, and pinkish-red color. They are one of the oldest tomato varieties and are prized for their sweet, slightly spicy taste.</p>
+                <img src="https://media.istockphoto.com/id/1143044562/photo/brandywine-red-tomatoes-on-grunge-blue-background.jpg?s=612x612&w=0&k=20&c=5HdTpAR9dGncz40hDZdf6cPA51FaZF2MlKf7TDZUbRc=" alt="Brandywine Tomato">
+                <p>These tomatoes are juicy with a smooth texture, making them ideal for slicing fresh in salads, sandwiches, or enjoyed on their own with a sprinkle of salt. They are also great for making tomato juice or sauces.</p>
+                <p>Brandywine tomato plants are indeterminate and require full sun and ample space to grow. They benefit from deep, rich soil and regular watering to produce large, flavorful fruit.</p>
+                <p>Harvest Brandywine tomatoes when they are fully ripe and slightly soft to the touch. They should have a deep, pinkish-red color and a strong, sweet aroma.</p>
+                <img src="https://media.istockphoto.com/id/1576428151/photo/huge-red-beef-tomato-in-hand-of-child-isolated-on-greenery-garden-background-big-ugly-freshly.jpg?s=612x612&w=0&k=20&c=El338V9FYac6zyV-ERaXmi2ugV1252gqFuCIWUGjVYg=" alt="Brandywine Tomato Plant">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectTomato = document.getElementById('tomato-select');
+            const varietyInfoContents = document.querySelectorAll('.variety-info-content');
+
+            selectTomato.addEventListener('change', function() {
+                const selectedValue = selectTomato.value;
+                varietyInfoContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(selectedValue + '-content').classList.add('active');
+            });
+        });
+    </script>
+
+
+
+
+
+
+    <!-- Harvest guide section -->
+    <div id="guide" class="container section">
+        <div class="guide">
+            <h1>Harvest Guide</h1>
+            <!-- Harvest guide content -->
+            <div class="guide-content">
+                <h2>Step-by-Step Harvesting Process</h2>
+                <ol>
+                    <li style="background-color: #fff4e6; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #c17130;">
+                        <h3 style="color: #c17130;">Step 1: Check for Ripeness</h3>
+                        <p style="color: #4b4b4b;">Look for tomatoes that are fully colored and slightly soft to the touch. The skin should be smooth and shiny, with no green spots or blemishes. A ripe tomato will also have a sweet, fragrant aroma. It's important to check your tomatoes daily as they can ripen quickly, especially in warm weather. Overripe tomatoes may start to crack or split, so it's best to pick them at the right time. Additionally, some varieties may exhibit a slight give when gently squeezed. Remember that the size of the tomato is not always an indicator of ripeness, so rely on color and feel.</p>
+                        <img src="https://www.researchgate.net/publication/322499112/figure/fig1/AS:582972207058944@1516002813872/Ripening-stages-of-tomato.png" alt="Checking for Ripeness" style="width: 80%; border-radius: 8px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                    </li>
+                    <li style="background-color: #e6f7ff; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #30a7c1;">
+                        <h3 style="color: #30a7c1;">Step 2: Use Proper Tools</h3>
+                        <p style="color: #4b4b4b;">Use sharp garden shears or scissors to cut the tomato from the vine. Make a clean cut just above the stem to avoid damaging the plant. Using proper tools helps prevent crushing the tomato and ensures a cleaner cut, reducing the risk of disease entry. Keep your tools clean and sterilize them regularly to avoid spreading plant diseases. Avoid twisting or pulling the fruit off the plant as it can damage both the fruit and the plant. It's also a good idea to wear gloves to protect your hands. Sharp tools make the process faster and reduce the physical effort needed.</p>
+                        <img src="https://img.freepik.com/premium-photo/harvesting-tomatoes-with-garden-scissors-women-s-hands-cut-ripe-tomatoes-with-sicator_330426-499.jpg" alt="Harvesting Tools" style="width: 80%; border-radius: 8px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                    </li>
+                    <li style="background-color: #fff5e6; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #c17130;">
+                        <h3 style="color: #c17130;">Step 3: Handle with Care</h3>
+                        <p style="color: #4b4b4b;">Gently place the harvested tomatoes in a basket or container to avoid bruising. Handle each tomato individually, supporting its weight with your hand. Avoid stacking tomatoes too high in your basket to prevent the ones at the bottom from being crushed. Using a basket with a soft lining can help protect the tomatoes during transport. Be mindful of any sharp objects or rough surfaces that could puncture the tomatoes' delicate skin. Remember to keep the tomatoes shaded to prevent them from heating up and spoiling quickly. Using padded gloves can also help in gentle handling and protecting your hands.</p>
+                        <img src="https://www.southernliving.com/thmb/_W9FrEAhu1Hw_vfWniE0ACUerrQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tomato-garden-2000-d3de7267d65c442b987c67c6e43e5e1e.jpg" alt="Handling Tomatoes" style="width: 80%; border-radius: 8px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                    </li>
+                    <li style="background-color: #e6ffe6; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid #30c171;">
+                        <h3 style="color: #30c171;">Step 4: Storage</h3>
+                        <p style="color: #4b4b4b;">Store the tomatoes in a cool, dry place or refrigerate them if not used immediately. Tomatoes continue to ripen after being picked, so if they are slightly underripe, leave them at room temperature for a few days. Avoid storing tomatoes in direct sunlight or in plastic bags as this can cause them to spoil faster. For longer storage, consider freezing or canning the tomatoes. Proper storage helps maintain their flavor and texture until you're ready to use them. To ripen them faster, you can place tomatoes in a paper bag with a banana or apple. Avoid stacking them to prevent pressure bruising.</p>
+                        <img src="https://watermark.lovepik.com/photo/20211119/large/lovepik-show-the-arrangement-of-tomato-stalls-in-picture_500179464.jpg" alt="Tomato Storage" style="width: 80%; border-radius: 8px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); margin-top: 10px;">
+                    </li>
+                </ol>
+                <h2 style="color: #c17130; margin-top: 30px;">Harvesting Tips</h2>
+                <ul style="list-style-type: disc; padding-left: 20px; color: #4b4b4b; background-color: #f5c7f8;">
+                    <li>Harvest in the morning when temperatures are cooler to prevent wilting. Early morning harvesting also helps preserve the tomatoes' firmness and moisture content, which can be lost during the heat of the day. This practice can also reduce stress on the plant.</li>
+                    <li>Regularly check your plants and harvest ripe tomatoes to encourage continuous production. Frequent harvesting can stimulate the plant to produce more fruit, ensuring a steady supply of tomatoes throughout the season. Timely harvesting also reduces the likelihood of pest infestations.</li>
+                    <li>Avoid harvesting tomatoes that are wet to reduce the risk of spreading diseases. Wet conditions can promote the growth of mold and bacteria, which can quickly spread to other parts of the plant or to your harvested tomatoes. If tomatoes are wet from dew or rain, allow them to dry before harvesting.</li>
+                    <li>Label and date your harvested tomatoes if you're storing them for later use. This helps you keep track of their freshness and ensures you use the oldest tomatoes first to minimize waste. You can also note the variety and any special characteristics to help with future planting decisions.</li>
+                    <li>Consider using different varieties of tomatoes for different purposes. For example, cherry tomatoes are great for snacking, while beefsteak tomatoes are ideal for slicing and sandwiches. Knowing the best use for each type can enhance your culinary experience. Experimenting with heirloom varieties can also add unique flavors and colors to your dishes.</li>
+                    <li>Prune your tomato plants regularly to improve air circulation and reduce the risk of disease. Removing excess foliage helps the plant direct more energy to fruit production and can result in healthier, more abundant tomatoes. Pruning also makes it easier to spot and harvest ripe tomatoes.</li>
+                    <li>Rotate your tomato crops each year to prevent soil depletion and reduce the risk of soil-borne diseases. Crop rotation involves planting tomatoes in a different area of your garden each year.</li>
+                    <li>Mulch around your tomato plants to retain soil moisture and suppress weeds. Mulching also helps regulate soil temperature and can reduce the risk of disease.</li>
+                    <li>Feed your tomato plants with a balanced fertilizer to support healthy growth and fruit production. Organic options such as compost or fish emulsion can provide essential nutrients without the risk of chemical buildup in the soil.</li>
+                    <li>Water your tomato plants deeply and consistently, aiming for the base of the plant to keep foliage dry. Consistent watering helps prevent issues like blossom end rot and splitting. Using a drip irrigation system can help provide consistent moisture without wetting the foliage.</li>
+                    <li>Use companion planting to enhance the growth and health of your tomato plants. Basil, marigolds, and nasturtiums can repel pests and improve the flavor of your tomatoes.</li>
+                    <li>Protect your tomato plants from extreme weather by using row covers or creating a shade structure. This can help prevent sunscald and reduce the impact of heavy rain or hail.</li>
+                    <li>Inspect your plants regularly for signs of pests or disease. Early detection and treatment can prevent the spread of problems and protect your harvest.</li>
+                    <li>Support your tomato plants with cages or stakes to keep them off the ground and improve air circulation. Proper support can reduce the risk of disease and make harvesting easier.</li>
+                    <li>Experiment with different planting techniques, such as vertical gardening or container gardening, to find the best method for your space and climate.</li>
+                </ul>
+            </div>
+            
+        
+        </div>
+    </div>
+
+    <!-- Login section -->
+    <div id="auth" class="container section">
+        <h1>Login to Tomato Thrive</h1>
+        <form>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" class="form-control">
+            </div>
+            <button type="button" onclick="login()" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+
+    <!-- JavaScript libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom scripts -->
+    <script src="scripts.js"></script>
+    
+    <script>
+        // Function to show a specific section and hide others
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            const sectionToShow = document.getElementById(sectionId);
+            if (sectionToShow) {
+                sectionToShow.style.display = 'block';
+                if (sectionId === 'monitor') {
+                    // Example function calls when switching to the monitor section
+                    fetchSensorData();
+                    renderCharts();
+                } else if (sectionId === 'info') {
+                    // Example function call when switching to the tomato info section
+                    fetchTomatoInfo();
+                }
+            }
+        }
+
+        // Dummy function for demonstration (replace with actual logout logic)
+        function logout() {
+            alert('Logging out...');
+            // Implement actual logout logic here if needed
+        }
+
+        // Example function for fetching sensor data (replace with actual logic)
+        function fetchSensorData() {
+            // Simulate fetching sensor data
+            setTimeout(() => {
+                document.getElementById('current-temperature').textContent = '25'; // Replace with actual data
+                document.getElementById('current-humidity').textContent = '60'; // Replace with actual data
+            }, 1000); // Simulate delay for fetching data
+        }
+
+        // Example function for fetching tomato information (replace with actual logic)
+        function fetchTomatoInfo() {
+            // Simulate fetching tomato information
+            const tomatoTypes = ['Cherry Tomato', 'Beefsteak Tomato', 'Roma Tomato'];
+            const infoContent = document.querySelector('.info-content');
+            infoContent.innerHTML = '';
+            tomatoTypes.forEach(type => {
+                const infoCard = document.createElement('div');
+                infoCard.classList.add('info-card');
+                infoCard.innerHTML = `
+                    <h3>${type}</h3>
+                    <img src="https://example.com/${type.replace(/\s+/g, '-').toLowerCase()}.jpg" alt="${type}">
+                    <p>Description of ${type}.</p>
+                `;
+                infoContent.appendChild(infoCard);
+            });
+        }
+
+        // Example function for subscribing to notifications (replace with actual logic)
+        function subscribeToNotifications() {
+            alert('Subscribed to notifications.');
+            // Implement actual subscription logic here
+        }
+
+        // Example function for login (replace with actual login logic)
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'user' && password === 'password') {
+                loggedIn = true;
+                showSection('monitor');
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+
+
+    
+    // Function to update monitor section with form data
+    function updateMonitorSection(formData) {
+        // Update monitor section with form data
+        document.getElementById('current-temperature').textContent = formData.temperature + '°C';
+        document.getElementById('current-humidity').textContent = formData.humidity + '%';
+        document.getElementById('current-interval').textContent = formData.interval + ' minutes';
+        document.getElementById('current-light').textContent = formData.lightControl;
+        document.getElementById('current-filter-status').textContent = formData.filterStatus;
+    }
+
+    // Event listener for form submission
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form data
+        var formData = {
+            temperature: document.getElementById('temperature').value,
+            humidity: document.getElementById('humidity').value,
+            interval: document.getElementById('interval').value,
+            lightControl: document.getElementById('lightControl').value,
+            filterStatus: document.getElementById('filterStatus').value
+        };
+
+        // Update monitor section with form data
+        updateMonitorSection(formData);
+
+        // Optionally, you can add code here to save formData to backend or local storage
+
+        // Reset form
+        this.reset();
+    });
+
+
+
+    /*monitor section*/
+    // Sample JavaScript to simulate dynamic updates and interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Simulated dynamic updates (replace with actual data fetching and updating logic)
+    updateCurrentSettings();
+    updateChart();
+    updateNotifications();
+    updateUserProfile();
+    updateEnergyEfficiency();
+    updateDeviceHealth();
+    updateWeatherInfo();
+    updateSmartResponses();
+
+    // Example functions to update content
+    function updateCurrentSettings() {
+        document.getElementById('current-temperature').textContent = getRandomNumber(15, 30) + '°C';
+        document.getElementById('current-humidity').textContent = getRandomNumber(30, 70) + '%';
+        document.getElementById('current-interval').textContent = getRandomNumber(10, 30) + ' minutes';
+        document.getElementById('current-light').textContent = getRandomLightControl();
+        document.getElementById('current-filter-status').textContent = getRandomFilterStatus();
+    }
+
+    function updateChart() {
+        // Replace with actual chart rendering logic (using Chart.js or similar)
+        // Example using random data:
+        const dataPoints = [];
+        for (let i = 0; i < 10; i++) {
+            dataPoints.push({ x: i, y: getRandomNumber(10, 30) });
+        }
+        renderChart('chartContainer', 'Temperature Trends', dataPoints);
+    }
+
+    function updateNotifications() {
+        const notifications = [
+            'Temperature is rising rapidly!',
+            'Humidity levels are dropping below normal.',
+            'Sprinkler system activated due to low humidity.',
+        ];
+        const notificationList = document.getElementById('notification-list');
+        notifications.forEach(notification => {
+            const li = document.createElement('li');
+            li.textContent = notification;
+            notificationList.appendChild(li);
+        });
+    }
+
+    function updateUserProfile() {
+        // Replace with actual user profile data fetch and update logic
+        document.getElementById('user-username').textContent = 'John Doe';
+        document.getElementById('user-email').textContent = 'john.doe@example.com';
+    }
+
+    function updateEnergyEfficiency() {
+        // Replace with actual energy efficiency data fetch and update logic
+        document.getElementById('energy-savings-today').textContent = getRandomNumber(5, 15) + ' kWh';
+        document.getElementById('energy-usage-month').textContent = getRandomNumber(100, 500) + ' kWh';
+    }
+
+    function updateDeviceHealth() {
+        // Replace with actual device health status fetch and update logic
+        document.getElementById('device-status').textContent = 'Normal';
+        document.getElementById('last-maintenance').textContent = 'July 1, 2024';
+    }
+
+    function updateWeatherInfo() {
+        // Replace with actual weather API integration logic
+        document.getElementById('current-weather').textContent = 'Sunny';
+        document.getElementById('temperature-outside').textContent = getRandomNumber(20, 35) + '°C';
+    }
+
+    function updateSmartResponses() {
+        // Replace with actual smart response suggestion logic
+        document.getElementById('optimal-settings').textContent = 'Optimal settings adjusted for energy savings.';
+    }
+
+    // Helper functions
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function getRandomLightControl() {
+        const options = ['Auto', 'On', 'Off'];
+        return options[getRandomNumber(0, 2)];
+    }
+
+    function getRandomFilterStatus() {
+        const options = ['Clean', 'Replace Soon', 'Replace Now'];
+        return options[getRandomNumber(0, 2)];
+    }
+
+    function renderChart(containerId, title, dataPoints) {
+        // Replace with actual chart rendering logic (using Chart.js or similar library)
+        // Example using Chart.js:
+        const ctx = document.getElementById(containerId).getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dataPoints.map(point => point.x),
+                datasets: [{
+                    label: title,
+                    data: dataPoints.map(point => point.y),
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    }
+});
+ // Sample data for the chart
+ 
+
+    /*monitor section*/
+// Dummy function for viewing notification details
+function viewDetails(type) {
+    // Dummy implementation for demonstration
+    alert(`View details for ${type}`);
+}
+
+/*tomato info*/
+
+
+/*tomato info*/
+    
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
